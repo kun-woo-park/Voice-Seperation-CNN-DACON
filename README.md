@@ -8,9 +8,69 @@ https://drive.google.com/file/d/1-v8Uc_CiTLRbAeP_k8nYimDdYcmlhF1c/view?usp=shari
 
 ## 구현 내용
 음성 중첩된 데이터들을 가공하는 방법으로 Mel spectogram을 사용하였다. Mel spectogram을 형성하는데는 torchaudio의 함수를 사용하였다. 사용한 factor는 다음 코드와 같다.
-
+```python
+mel_spectrogram = nn.Sequential(
+    AT.MelSpectrogram(sample_rate=16000, 
+                      n_fft=512, 
+                      win_length=400,
+                      hop_length=160,
+                      n_mels=80),
+    AT.AmplitudeToDB()
+)
+```
 네트워크는 CNN의 형식을 채택했으며, 네트워크는 다음과 같이 구현하였다.
+```python
+class VRModel(torch.nn.Module):
+    def __init__(self):
+        super(VRModel, self).__init__()
+        self.layer_1 = nn.Conv2d(1,8,(4,5),2)
+        self.act_1 = nn.ReLU()
+        
+        self.layer_2 = nn.Conv2d(8,16,(4,5),2)
+        self.act_2 = nn.ReLU()
+        
+        self.layer_3 = nn.Conv2d(16,32,(4,5))
+        self.act_3 = nn.ReLU()
+        
+        self.layer_4 = nn.Conv2d(32,64,(4,4))
+        self.act_4 = nn.ReLU()
+        
+        self.layer_5 = nn.Conv2d(64,64,(3,4),(2,3))
+        self.act_5 = nn.ReLU()
 
+        
+        self.fc_layer_1 = nn.Linear(25*64,256)
+        self.act_7 = nn.ReLU()
+        
+        self.bnm1=nn.BatchNorm1d(256)
+        
+        self.fc_layer_2 = nn.Linear(256,256)
+        self.act_8 = nn.ReLU()
+        
+        self.bnm2=nn.BatchNorm1d(256)
+        
+        self.fc_layer_3 = nn.Linear(256,256)
+        self.act_9 = nn.ReLU()
+        
+        self.bnm3=nn.BatchNorm1d(256)
+        
+        self.fc_layer_4 = nn.Linear(256,30)
+        
+        self.act_10=torch.nn.Softmax(dim=1)
+        
+        
+
+    def forward(self, x):
+        x = x.view(batch_size//num_gpus,1,80,101)
+        out = self.layer_1(x)
+        out = self.act_1(out)
+        for module in list(self.modules())[2:-11]:
+            out = module(out)
+        out = out.view(batch_size//num_gpus,-1)
+        for module in list(self.modules())[-11:]:
+            out = module(out)
+        return out
+```
 Batch size = 256, Epoch = 100으로 설정하여 학습을 진행하였다.
 
 ## 구현 결과
