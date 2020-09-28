@@ -4,7 +4,7 @@
 데이콘에서 진행되었던 음성중첩 분리 학습을 위해 진행되었다. 총 10만개의 음성데이터를 이용하여 학습하고, 이 10만개의 음성 데이터 내에 어떤 단어들이 있는지 구분해 내는것이 목적이다.
 해당 데이터는 다음 링크에서 받을 수 있다. 
 
-https://drive.google.com/file/d/1-v8Uc_CiTLRbAeP_k8nYimDdYcmlhF1c/view?usp=sharing
+https://dacon.io/competitions/official/235616/overview/
 
 ## 구현 내용
 음성 중첩된 데이터들을 가공하는 방법으로 Mel spectogram을 사용하였다. Mel spectogram을 형성하는데는 torchaudio의 함수를 사용하였다. 사용한 factor는 다음 코드와 같다.
