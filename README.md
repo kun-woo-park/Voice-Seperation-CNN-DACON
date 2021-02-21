@@ -74,4 +74,4 @@ class VRModel(torch.nn.Module):
 Batch size = 256, Epoch = 100으로 설정하여 학습을 진행하였다.
 
 ## 구현 결과
-Voice_seperation_CNN.ipynb에서 결과를 보면, 9 Epoch 즈음까지 Valloss가 수렴하다가, 이후 발산하는 양상을 볼 수 있다. 따라서 9 Epoch 까지는 Well-fitted 되어있었으나 이후 overfitting이 발생했다고 예측한다. 해당 모델에 대한 데이콘 결과는 loss 1.36987가 나왔고, 총 396팀중 34등으로 순위권내에는 위치하지 못하였으나, 첫 데이콘 도전에 의의가 있다고 생각된다.
+Voice_seperation_CNN.ipynb에서 결과를 보면, 9 Epoch 즈음까지 Valloss가 수렴하다가, 이후 발산하는 양상을 볼 수 있다. 따라서 9 Epoch 까지는 Well-fitted 되어있었으나 이후 overfitting이 발생했다고 예측한다. 해당 모델에 대한 데이콘 결과는 loss 1.36987가 나왔고, 총 396팀중 34등으로 순위권내에는 위치하지 못하였으나, 첫 데이콘 도전에 의의가 있다고 생각된다.   
