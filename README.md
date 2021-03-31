@@ -1,5 +1,12 @@
 # Voice-Seperation-CNN
 
+## Implementation of project
+```bash
+git clone https://github.com/kun-woo-park/Voice-Seperation-CNN-DACON.git
+cd Voice-Seperation-CNN-DACON
+python3 Voice_seperation_CNN.py
+```
+
 ## 구현 목적
 데이콘에서 진행되었던 음성중첩 분리 학습을 위해 진행되었다. 총 10만개의 음성데이터를 이용하여 학습하고, 이 10만개의 음성 데이터 내에 어떤 단어들이 있는지 구분해 내는것이 목적이다.
 해당 데이터는 다음 링크에서 받을 수 있다. 
