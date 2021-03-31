@@ -5,7 +5,7 @@ from custom_functions import Mel_spectroize, CustomDataset, VRModel, train_model
 
 if __name__ == "__main__":
     # set number of usable gpus
-    num_gpus = 1
+    num_gpus = 4
     # set batch size
     batch_size = 256
     # set total train epoch
