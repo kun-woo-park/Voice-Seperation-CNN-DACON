@@ -166,5 +166,5 @@ def train_model(model, total_epoch, train_loader, val_loader):
             len(train_loader), val_loss / len(val_loader)
         ))
 
-    torch.save(model, "model_test")
+    torch.save(model, "model_fin.pth")
     print("model saved complete")
